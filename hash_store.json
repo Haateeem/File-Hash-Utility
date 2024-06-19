@@ -1,0 +1,32 @@
+{
+    "example.txt": {
+        "hash": "305957aff7aee70325f7610f43ad2c352f06d36484c9c7129666dc10e014a27b",
+        "timestamp": "2024-06-17 20:58:09",
+        "algorithm": "sha256"
+    },
+    "testing.txt": {
+        "hash": "043a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89",
+        "timestamp": "2024-06-17 18:27:24",
+        "algorithm": "sha256"
+    },
+    "testingFiles/example.txt": {
+        "hash": "eb3572f55246a4f4a63220d7da95cab0",
+        "timestamp": "2024-06-17 20:59:36",
+        "algorithm": "md5"
+    },
+    "testingFiles/d/example.txt": {
+        "hash": "305957aff7aee70325f7610f43ad2c352f06d36484c9c7129666dc10e014a27b",
+        "timestamp": "2024-06-17 21:19:03",
+        "algorithm": "sha256"
+    },
+    "../../scanresult.png": {
+        "hash": "db2ad62dcd0510d983a8c86facf4dbc968d2e439e041002cdfd3cf9868ead3bd",
+        "timestamp": "2024-06-17 21:21:34",
+        "algorithm": "sha256"
+    },
+    "/mnt/e/python projects/Cryptographic-hash-function/testingFiles/example.txt": {
+        "hash": "305957aff7aee70325f7610f43ad2c352f06d36484c9c7129666dc10e014a27b",
+        "timestamp": "2024-06-17 21:30:47",
+        "algorithm": "sha256"
+    }
+}

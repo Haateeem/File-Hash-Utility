@@ -1,0 +1,59 @@
+# dont change this file, it is for reference
+
+import os
+import logging
+import json
+from datetime import datetime
+from calculate_hash import calculate_hash
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+JSON_FILE = 'hash_store.json'
+
+def load_hash_store():
+    if os.path.exists(JSON_FILE):
+        with open(JSON_FILE, 'r') as json_file:
+            return json.load(json_file)
+    else:
+        return {}
+
+def store_hash_store(hash_store):
+    with open(JSON_FILE, 'w') as json_file:
+        json.dump(hash_store, json_file, indent=4)
+
+# Load hash store initially
+hash_store = load_hash_store()
+
+def store_hash(file_path, algorithm='sha256'):
+    if not os.path.exists(file_path):
+        print(f"Error: File '{file_path}' does not exist.")
+        return
+
+    # Clear hash_store before storing new hash
+    hash_store.clear()
+
+    hash_value = calculate_hash(file_path, algorithm)
+    if hash_value is not None:
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        # Store hash, timestamp, and algorithm in the hash_store dictionary
+        hash_store[file_path] = {
+            'hash': hash_value,
+            'timestamp': timestamp,
+            'algorithm': algorithm  # Include the algorithm used
+        }
+        
+        logging.info(f'Stored hash for {file_path} ({timestamp}): {hash_value} using algorithm {algorithm}')
+
+        store_hash_store(hash_store)
+
+def verify_file(file_path, algorithm='sha256'):
+    if file_path not in hash_store:
+        return None
+
+    current_hash = calculate_hash(file_path, algorithm)
+    stored_hash = hash_store[file_path]['hash']
+    if current_hash == stored_hash:
+        return True
+    else:
+        return False
