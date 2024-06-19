@@ -1,9 +1,10 @@
 #flask app to run project on web browser
 #execute python3 app.py in terminal, copy the 
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
 import logging
+import hashlib
 from hash_utils import store_hash, verify_file
 
 app = Flask(__name__)
@@ -38,6 +39,19 @@ def process():
         result = "Unknown action requested."
     
     return render_template('index.html', result=result)
+
+@app.route('/calculate', methods=['POST'])
+def calculate():
+    input_text = request.form['input']
+    algorithm = request.form['algorithm']
+
+    # Calculate hash
+    hash_func = hashlib.new(algorithm)
+    hash_func.update(input_text.encode('utf-8'))
+    hash_result = hash_func.hexdigest()
+
+    return render_template('index.html', result=hash_result)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

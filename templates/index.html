@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Hash Utility</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
 </head>
+
 <body>
+
+    <div class="buttons-outside">
+        <button onclick="toggleBox('box')">Toggle Box 1</button>
+        <button onclick="toggleBox('box-2')">Toggle Box 2</button>
+    </div>
+
     <div class="container">
-        <div class="box">
+        <div class="box hidden" id="box">
             <h1>File Hash Utility</h1>
             <form action="{{ url_for('process') }}" method="post" enctype="multipart/form-data">
                 <input type="file" id="file" name="file" multiple required>
@@ -26,9 +34,77 @@
             </form>
 
             {% if result %}
-            <p class="{% if 'Error' in result or 'compromised' in result or 'No' in result %}error{% endif %}">{{ result }}</p>
+            <p class="{% if 'Error' in result or 'compromised' in result or 'No' in result %}error{% endif %}">{{ result
+                }}</p>
             {% endif %}
         </div>
+
+        <div class="box" id="box-2">
+            <h1>Calculate Hash</h1>
+            <form action="{{ url_for('calculate') }}" method="post" enctype="multipart/form-data">
+                <textarea name="input" id="input" placeholder="Enter content to hash..."></textarea>
+
+                <select id="algorithm" name="algorithm">
+                    <option value="sha256" selected>SHA256</option>
+                    <option value="md5">MD5</option>
+                    <option value="sha1">SHA1</option>
+                </select>
+
+                <div class="buttons">
+                    <button type="submit">Calculate</button>
+                </div>
+            </form>
+
+        
+            <textarea class="" id="result">
+            {{result}}
+            </textarea>
+
+            <button type="button" onclick="copyToClipboard()" id="copyButton">Copy Code</button>
+        </div>
+
     </div>
+
+    <script>
+        function toggleBox(targetId) {
+            var targetElement = document.getElementById(targetId);
+            var allBoxes = document.querySelectorAll('.box');
+
+            allBoxes.forEach(function (box) {
+                if (box === targetElement) {
+                    box.classList.remove('hidden');
+                } else {
+                    box.classList.add('hidden');
+                }
+            });
+        }
+
+        function copyToClipboard() {
+
+            var textToCopy = document.getElementById('result');
+            textToCopy = textToCopy.innerHTML
+
+            // Create a temporary textarea element
+            var textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+
+            // Select the text in the textarea
+            textarea.select();
+            textarea.setSelectionRange(0, textarea.value.length);
+
+            // Copy the selected text to the clipboard
+            document.execCommand('copy');
+
+            // Clean up - remove the textarea
+            document.body.removeChild(textarea)
+
+            // Change button text to "Copied!"
+            var copyButton = document.getElementById('copyButton');
+            copyButton.innerText = 'Copied!';
+        }
+    </script>
+
 </body>
+
 </html>
