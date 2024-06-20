@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #f5f5f5; /* Light gray background */
 }
 
 .container {
@@ -18,7 +18,7 @@ body {
 .box {
     width: 100%;
     max-width: 600px; /* Adjust max-width as needed */
-    background-color: #212121;
+    background-color: #ffffff;
     padding: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -31,7 +31,7 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #d3d3d3;
+    color: #333333; /* Dark gray text */
 }
 
 form {
@@ -46,8 +46,8 @@ input[type="file"], select {
     border: none;
     border-radius: 4px;
     margin-bottom: 10px;
-    background-color: #2F2F2F;
-    color: #aaa;
+    background-color: #f0f0f0; /* Light gray input background */
+    color: #333333; /* Dark gray text */
 }
 
 input[type="file"] {
@@ -63,7 +63,7 @@ input[type="file"]::file-selector-button {
     transition: box-shadow 0.1s ease;
     border: none;
     outline: none;
-    background-color: #d0d0d0;
+    background-color: #d0d0d0; /* Light gray button background */
 }
 
 input[type="file"]::file-selector-button:hover {
@@ -71,7 +71,7 @@ input[type="file"]::file-selector-button:hover {
 }
 
 input[type="text"]::placeholder {
-    color: #aaa;
+    color: #999999; /* Light gray placeholder text */
 }
 
 #box-2 textarea {
@@ -81,21 +81,20 @@ input[type="text"]::placeholder {
     padding: 10px;
     font-size: 16px;
     border-radius: 4px;
-    resize: none; /* Allow vertical resizing */
+    resize: none; /* Disable vertical resizing */
     overflow-y: auto;
     margin-bottom: 5px;
-    background-color: #2F2F2F;
-    color: #aaa;
-    border: none;
-    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Light gray textarea background */
+    color: #333333; /* Dark gray text */
+    border: 1px solid #e0e0e0; /* Light gray border */
 }
 
 #box-2 textarea::placeholder {
-    color: #aaa;
+    color: #999999; /* Light gray placeholder text */
 }
 
 #box-2 textarea:focus {
-    border: none;
+    border: 1px solid #007bff; /* Blue border on focus */
     outline: none;
 }
 
@@ -108,8 +107,8 @@ input[type="text"]::placeholder {
 
 button[type="submit"] {
     flex: 1;
-    background-color: #ffffff;
-    color: rgb(34, 34, 34);
+    background-color: #4993e1; /* Blue button background */
+    color: #ffffff; /* White text */
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -119,19 +118,19 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 p {
     margin-top: 20px;
     padding: 12px;
-    border-left: 4px solid #3a8d3c;
-    background-color: #c9ffca; /* Light green background */
-    color: #004f04;
+    border-left: 4px solid #4caf50; /* Green border */
+    background-color: #d9ead3; /* Light green background */
+    color: #004d00; /* Dark green text */
 }
 
 p.error {
-    border-left-color: #ac0011; /* Dark red border for errors */
+    border-left-color: #dc3545; /* Red border for errors */
     background-color: #f8d7da; /* Light red background */
     color: #721c24; /* Dark red text */
 }
@@ -143,8 +142,7 @@ p.error {
     }
 }
 
-/* code block styles */
-
+/* Code block styles */
 .code-block-container {
     width: 100%;
     margin-top: 10px;
@@ -154,11 +152,11 @@ p.error {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2F2F2F;
+    background-color: #007bff; /* Blue header background */
     padding: 10px 20px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    color: #fff;
+    color: #ffffff; /* White text */
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -170,17 +168,23 @@ p.error {
     background-color: transparent;
     border: none;
     border-radius: 3px;
-    color: white;
+    color: #ffffff; /* White text */
     cursor: pointer;
     font-size: 12px;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease;
+}
+
+.copy-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Transparent background on hover */
 }
 
 .code-block {
-    background-color: #000000;
+    background-color: #333333; /* Dark gray code block background */
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #ccc;
+    color: #cccccc; /* Light gray code text */
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
     padding: 20px;

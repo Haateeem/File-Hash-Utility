@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Hash Utility</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_new.css') }}">
 </head>
 
 <body>
@@ -40,7 +40,7 @@
         </div>
 
         <div class="box" id="box-2">
-            <h1>Calculate Hash</h1>
+            <h1>Hash Calculator</h1>
             <form action="{{ url_for('calculate') }}" method="post" enctype="multipart/form-data">
                 <textarea name="input" id="input" placeholder="Enter content to hash..."></textarea>
 
@@ -54,13 +54,25 @@
                     <button type="submit">Calculate</button>
                 </div>
             </form>
+            <!-- 
+            {% if result %}
+            <p class="" id="result">
+                {{result}}
+            </p>
+            {% endif %} -->
 
-        
-            <textarea class="" id="result">
-            {{result}}
-            </textarea>
+            {% if result %}
+            <div class="code-block-container">
+                <div class="code-header">
+                    <span class="code-label">algorithm</span>
+                    <button class="copy-button" onclick="copyCode()" id="copyBtn">Copy Code</button>
+                </div>
+                <div class="code-block">
+                    {{result}}
+                </div>
+            </div>
+            {% endif %}
 
-            <button type="button" onclick="copyToClipboard()" id="copyButton">Copy Code</button>
         </div>
 
     </div>
@@ -79,30 +91,21 @@
             });
         }
 
-        function copyToClipboard() {
+        function copyCode() {
+            const codeBlock = document.querySelector('.code-block');
+            const textArea = document.createElement('textarea');
+            const plainText = codeBlock.textContent.replace(/\s+/g, ''); // Remove all whitespace
 
-            var textToCopy = document.getElementById('result');
-            textToCopy = textToCopy.innerHTML
-
-            // Create a temporary textarea element
-            var textarea = document.createElement('textarea');
-            textarea.value = textToCopy;
-            document.body.appendChild(textarea);
-
-            // Select the text in the textarea
-            textarea.select();
-            textarea.setSelectionRange(0, textarea.value.length);
-
-            // Copy the selected text to the clipboard
+            textArea.value = plainText;
+            document.body.appendChild(textArea);
+            textArea.select();
             document.execCommand('copy');
+            document.body.removeChild(textArea);
 
-            // Clean up - remove the textarea
-            document.body.removeChild(textarea)
-
-            // Change button text to "Copied!"
-            var copyButton = document.getElementById('copyButton');
-            copyButton.innerText = 'Copied!';
+            const copyBtn = document.getElementById('copyBtn');
+            copyBtn.innerText = 'Copied!'
         }
+
     </script>
 
 </body>
