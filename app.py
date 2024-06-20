@@ -3,6 +3,7 @@
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
+import subprocess
 import logging
 import hashlib
 from hash_utils import store_hash, verify_file
@@ -12,9 +13,17 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Route for rendering index.html template
+""" @app.route('/')
+def index():
+    return render_template('index.html') """
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+    user_agent = request.headers.get('User-Agent').lower()
+    if 'mobile' in user_agent:
+        return render_template('mobile-template.html')
+    else:
+        return render_template('index.html')
 
 # Route for handling POST requests from the form
 @app.route('/process', methods=['POST'])
