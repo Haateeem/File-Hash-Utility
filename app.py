@@ -59,7 +59,7 @@ def calculate():
     hash_func.update(input_text.encode('utf-8'))
     hash_result = hash_func.hexdigest()
 
-    return render_template('index.html', result=hash_result)
+    return render_template('index.html', result2=hash_result)
 
 
 if __name__ == '__main__':

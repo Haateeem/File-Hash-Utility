@@ -6,16 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Hash Utility</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
 
+<body>
+    
     <div class="buttons-outside">
-        <button onclick="toggleBox('box')">Toggle Box 1</button>
-        <button onclick="toggleBox('box-2')">Toggle Box 2</button>
+
+        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+        <label class="btn btn-outline-secondary" for="success-outlined" onclick="toggleBox('box')">Save file hash</label>
+
+        <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+        <label class="btn btn-outline-secondary" for="danger-outlined" onclick="toggleBox('box-2')">Calculate content hash</label>
     </div>
 
     <div class="container">
+
         <div class="box hidden" id="box">
             <h1>File Hash Utility</h1>
             <form action="{{ url_for('process') }}" method="post" enctype="multipart/form-data">
@@ -61,14 +69,14 @@
             </p>
             {% endif %} -->
 
-            {% if result %}
+            {% if result2 %}
             <div class="code-block-container">
                 <div class="code-header">
                     <span class="code-label">algorithm</span>
                     <button class="copy-button" onclick="copyCode()" id="copyBtn">Copy Code</button>
                 </div>
                 <div class="code-block">
-                    {{result}}
+                    {{result2}}
                 </div>
             </div>
             {% endif %}
